@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome {{ name }}</h1>
+    </header>
+    
+    <main>
+        <div>    <!--This is a Home page with 3 buttons that allow for chosing chat room-->
+            <h2>ROOM1</h2>
+            <form method="POST">
+                <button name="room" value="ROOM1" type="submit">Join ROOM1</button>
+            </form>
+        </div>
+
+        <div>
+            <h2>ROOM2</h2>
+            <form method="POST">
+                <button name="room" value="ROOM2" type="submit">Join ROOM2</button>
+            </form>
+        </div>
+
+        <div>
+            <h2>ROOM3</h2>
+            <form method="POST">
+                <button name="room" value="ROOM3" type="submit">Join ROOM3</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>I Týchi Evnoeí Tous Tolmiroús</p>
+    </footer>
+</body>
+</html>

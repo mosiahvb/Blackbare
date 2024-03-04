@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    
+    <header>
+        <h1>Blackbear</h1>
+    </header>
+    
+    <main>
+       <div id="message-container">
+
+        <div id="messages">
+            <!-- messages will be here -->
+        </div>
+        
+        </div>
+
+        <form id="message-form"> <!--entering the message will be here -->
+            <input type="text" id="message-input" placeholder="Type your message...">
+            <button type="submit">Send</button>
+        </form>
+        
+    </main>
+
+    <footer>
+        <p>I Týchi Evnoeí Tous Tolmiroús</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+    <script>
+        // needed to make sure the js is used after the page loads.
+        document.addEventListener('DOMContentLoaded', function () {
+
+        // Initializing the socket, connecting to socketio
+        var socket = io();
+
+        // Function to handle sending messages
+        document.getElementById('message-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // allows js to handle the form submission
+
+            var messageInput = document.getElementById('message-input'); // Gathers the data from the message
+            var message = messageInput.value.trim(); // Change the data into text.
+            if (message !== '') { // checks to make sure the message is not blank.
+                socket.emit('message', { data: message }); // send the message to the server
+                messageInput.value = ''; // clears the message input
+            }
+        });
+
+    
+        socket.on('message', function (data) { // received message from server, Then breaks it down
+            var messageContainer = document.getElementById('message-container'); //Identifies the container
+            var messageElement = document.createElement('div'); // Create a new development for the message
+            messageElement.textContent = data.name + ': ' + data.message; // Creates the format wanted for the message
+            messageContainer.appendChild(messageElement); // add the new div to the container
+        });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App Login</title> 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    
+    <header>
+        <h1>Blackbear</h1>
+    </header>
+
+    <main> <!--this page handles, grabbing input information and sending it to the main to be verified for password and To collect any.-->
+        <form method="POST" action="/login">
+            <input type="text" name="name" placeholder="Please enter name" required> <!-- Corrected input type -->
+            <input type="password" name="password" placeholder="Enter password" required>
+            <button type="submit">Login</button>
+        </form>
+    </main>
+    
+    <footer>
+        <p>I Týchi Evnoeí Tous Tolmiroús</p>
+    </footer>
+</body>
+</html>
