@@ -15,10 +15,12 @@
     
     <main>
        <div id="message-container">
-
-        <div id="messages">
-            <!-- messages will be here -->
-        </div>
+            <div id="messages">
+                <!-- Loop through messages and display them -->
+                {% for message in messages %}
+                    <div>{{ message.name }}: {{ message.message }}</div>
+                {% endfor %}
+            </div>
         
         </div>
 
@@ -26,6 +28,10 @@
             <input type="text" id="message-input" placeholder="Type your message...">
             <button type="submit">Send</button>
         </form>
+
+        <div id="back">
+            <a href="{{ url_for('home') }}" class="back-button">Back to Home</a> <!-- add this line for the back button -->
+        </div>
         
     </main>
 
@@ -35,32 +41,59 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
     <script>
-        // needed to make sure the js is used after the page loads.
-        document.addEventListener('DOMContentLoaded', function () {
+        function encrypt(message, shift) {
+            var encryptedMessage = "";
+            for (var i = 0; i < message.length; i++) {
+                var charCode = message.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    encryptedMessage += String.fromCharCode(((charCode - 65 + shift) % 26) + 65);
+                } else if (charCode >= 97 && charCode <= 122) {
+                    encryptedMessage += String.fromCharCode(((charCode - 97 + shift) % 26) + 97);
+                } else {
+                    encryptedMessage += message.charAt(i);
+                }
+            }
+            return encryptedMessage;
+        }
+
+        function decrypt(encryptedMessage, shift) {
+            return encrypt(encryptedMessage, 26 - shift);
+        }
+
+        // Function to handle message display
+        function displayMessage(data) {
+            var messageContainer = document.getElementById('message-container');
+            var messageElement = document.createElement('div');
+            
+            if (data.without_encryption) {
+                messageElement.textContent = data.name + ': ' + data.message;
+            } else {
+                var decryptedMessage = decrypt(data.message, 3);
+                messageElement.textContent = data.name + ': ' + decryptedMessage;
+            }
+            
+            messageContainer.appendChild(messageElement);
+        }
 
         // Initializing the socket, connecting to socketio
         var socket = io();
 
         // Function to handle sending messages
         document.getElementById('message-form').addEventListener('submit', function (event) {
-            event.preventDefault(); // allows js to handle the form submission
+            event.preventDefault();
 
-            var messageInput = document.getElementById('message-input'); // Gathers the data from the message
-            var message = messageInput.value.trim(); // Change the data into text.
-            if (message !== '') { // checks to make sure the message is not blank.
-                socket.emit('message', { data: message }); // send the message to the server
-                messageInput.value = ''; // clears the message input
+            var messageInput = document.getElementById('message-input');
+            var message = messageInput.value.trim();
+            if (message !== '') {
+                var encryptedMessage = encrypt(message, 3);
+                socket.emit('message', { data: encryptedMessage });
+                messageInput.value = '';
             }
         });
 
-    
-        socket.on('message', function (data) { // received message from server, Then breaks it down
-            var messageContainer = document.getElementById('message-container'); //Identifies the container
-            var messageElement = document.createElement('div'); // Create a new development for the message
-            messageElement.textContent = data.name + ': ' + data.message; // Creates the format wanted for the message
-            messageContainer.appendChild(messageElement); // add the new div to the container
+        socket.on('message', function (data) {
+            displayMessage(data);
         });
-    });
     </script>
 </body>
 </html>

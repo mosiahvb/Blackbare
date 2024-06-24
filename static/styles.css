@@ -1,38 +1,38 @@
 /* body */
 body{
-    display: grid;
-    justify-content: center;
-    text-align: center;
-    grid-template-columns: 1fr;
-    height: 100vh;
-  }
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  grid-template-columns: 1fr;
+  height: 100vh;
+}
 /* body */
 
 /* header */
 header {
-    background-color: #212529;
-    color: #E9ECEF;
-    padding: 10px;
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Horizontally center the content */
-    align-items: center; /* Vertically center the content */
-  }
-  
-  h1 {
-    color: #212529;
-    background-color: #6C757D;
-    border: 10px solid #6C757D;
-    border-radius: 10px;
-  }
+  background-color: #212529;
+  color: #E9ECEF;
+  padding: 10px;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+}
+
+h1 {
+  color: #212529;
+  background-color: #6C757D;
+  border: 10px solid #6C757D;
+  border-radius: 10px;
+}
 /* header */
 
 
 /* footer */
 footer {
-    background-color: #212529;
-    color: #E9ECEF;
-    padding: 10px;
-  }
+  background-color: #212529;
+  color: #E9ECEF;
+  padding: 10px;
+}
 /* footer */
 
 /**/
@@ -42,57 +42,71 @@ footer {
 /**/
 
 main {
-    padding: 50px;
-    background-color: #212529;
-    color: black;
-    
-  }
+  padding: 50px;
+  background-color: #212529;
+  color: black;
+  
+}
 
 form {
-    width: 90%; /* Adjust width to fit smaller screens */
-    max-width: 300px; /* Limit maximum width for larger screens */
-    margin: 0 auto; /* Center the form horizontally */
-  }
+  width: 90%; /* Adjust width to fit smaller screens */
+  max-width: 300px; /* Limit maximum width for larger screens */
+  margin: 0 auto; /* Center the form horizontally */
+}
 
 input[type="password"] {
-    width: 100%; /* Take full width of parent container */
-    height: 50px;
-    box-sizing: border-box; /* Include padding and border in the width */
-    margin-bottom: 10px; /* Add some spacing between input and button */
-    padding: 10px;
-    background-color: #E9ECEF;
-    border: 3px solid #6C757D;
-  }
+  width: 100%; /* Take full width of parent container */
+  height: 50px;
+  box-sizing: border-box; /* Include padding and border in the width */
+  margin-bottom: 10px; /* Add some spacing between input and button */
+  padding: 10px;
+  background-color: #E9ECEF;
+  border: 3px solid #6C757D;
+}
 
 input[type="text"] {
-    width: 100%; /* Take full width of parent container */
-    height: 50px;
-    box-sizing: border-box; /* Include padding and border in the width */
-    margin-bottom: 10px; /* Add some spacing between input and button */
-    background-color: #E9ECEF;
-    border: 3px solid #6C757D;
-  }
+  width: 100%; /* Take full width of parent container */
+  height: 50px;
+  box-sizing: border-box; /* Include padding and border in the width */
+  margin-bottom: 10px; /* Add some spacing between input and button */
+  background-color: #E9ECEF;
+  border: 3px solid #6C757D;
+}
 
 button {
-    width: 100%; /* Take full width of parent container */
-    height: 50px;
-    box-sizing: border-box; /* Include padding and border in the width */
-    background-color: #E9ECEF;
-    border: 3px solid #6C757D;
-  }
+  width: 100%; /* Take full width of parent container */
+  height: 50px;
+  box-sizing: border-box; /* Include padding and border in the width */
+  background-color: #E9ECEF;
+  border: 3px solid #6C757D;
+}
 
 div{
-    color: #E9ECEF;
+  color: #E9ECEF;
 }
 
 #message-container{
-  border: 2px solid white;
-  border-radius: 10px;
-  background-color: gray;
-  color: black;
+border: 2px solid white;
+border-radius: 10px;
+background-color: gray;
+color: black;
 
-  margin: 0 auto; /* Center horizontally */
-  max-width: 400px; /* Set maximum width */
-  height: auto;
-  
+margin: 0 auto; /* Center horizontally */
+max-width: 400px; /* Set maximum width */
+height: auto;
+
+}
+
+#back {
+margin-top: 2rem;
+}
+.back-button {
+text-decoration: none;
+color: white;
+background-color: grey;
+padding: 5px;
+}
+.back-button:hover {
+color: gray;
+background-color: white;
 }
